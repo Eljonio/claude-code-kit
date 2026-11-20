@@ -1,0 +1,29 @@
+# dependencies
+node_modules/
+
+# runtime
+server.log
+*.log
+*.pid
+*.tmp
+*.lock
+
+# local data: never commit a real notes folder, facts store or Claude settings
+claude-vault/
+facts.json
+FACTS.md
+MEMORY.next.md
+settings.json
+settings.local.json
+*.bak-*
+
+# environment and secrets
+.env
+.env.*
+
+# editors and OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+.obsidian/

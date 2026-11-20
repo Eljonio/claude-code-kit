@@ -1,0 +1,8 @@
+# Windows command files need CRLF; shell scripts and the Node entry points need LF.
+*.cmd    text eol=crlf
+*.sh     text eol=lf
+bin/vault         text eol=lf
+bin/vault-recall  text eol=lf
+bin/vaultctl      text eol=lf
+bin/vault-commit  text eol=lf
+vault-app/bin/*   text eol=lf

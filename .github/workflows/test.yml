@@ -1,0 +1,42 @@
+name: tests
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: git config --global user.name ci && git config --global user.email ci@example.com
+      - name: Unit tests
+        working-directory: vault-app
+        shell: bash
+        run: npm ci && npm test
+      - name: Install (Linux, macOS)
+        if: runner.os != 'Windows'
+        run: ./install.sh --owner CI
+      - name: Install (Windows)
+        if: runner.os == 'Windows'
+        shell: cmd
+        run: powershell -ExecutionPolicy Bypass -File install.ps1 -Owner CI
+      - name: Commands answer after install (Linux, macOS)
+        if: runner.os != 'Windows'
+        run: |
+          "$HOME/.local/bin/vault" issues
+          "$HOME/.local/bin/vault" fact ls
+      - name: Commands answer after install (Windows)
+        if: runner.os == 'Windows'
+        shell: cmd
+        run: |
+          call "%USERPROFILE%\claude-kit\bin\vault.cmd" issues
+          call "%USERPROFILE%\claude-kit\bin\vault.cmd" fact ls

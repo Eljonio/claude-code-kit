@@ -1,0 +1,26 @@
+{
+  "name": "vault-app",
+  "version": "1.0.0-kit.1",
+  "description": "Cross-platform copy of vault-app bundled with claude-code-kit: long-term memory for AI coding agents (web UI, CLI, facts, prompt-time recall)",
+  "private": true,
+  "bin": {
+    "vault": "bin/vault",
+    "vault-recall": "bin/vault-recall",
+    "vaultctl": "bin/vaultctl.js",
+    "vault-commit": "bin/vault-commit.js"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": ["claude-code", "memory", "llm", "markdown", "obsidian"],
+  "author": "Yelzhas Saken",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "marked": "^18.0.13"
+  }
+}

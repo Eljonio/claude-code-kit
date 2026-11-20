@@ -1,0 +1,14 @@
+{
+  "autoMemoryDirectory": "~/claude-vault",
+  "hooks": {
+    "SessionStart": [
+      { "hooks": [{ "type": "command", "command": "node \"$HOME/claude-kit/vault-app/bin/vaultctl.js\" hook-start", "timeout": 20, "statusMessage": "Vault: starting" }] }
+    ],
+    "SessionEnd": [
+      { "hooks": [{ "type": "command", "command": "node \"$HOME/claude-kit/vault-app/bin/vaultctl.js\" hook-stop", "timeout": 10 }] }
+    ],
+    "UserPromptSubmit": [
+      { "hooks": [{ "type": "command", "command": "node \"$HOME/claude-kit/vault-app/bin/vault-recall\" --hook", "timeout": 5 }] }
+    ]
+  }
+}
